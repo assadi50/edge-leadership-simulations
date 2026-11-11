@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Project HORIZON Simulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="../assets/sim.css">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <img class="logo" src="../assets/kg-logo.png" alt="Knowledge Group">
+      <span class="sep"></span>
+      <span class="tl"><b id="tl-title">Project</b>EDGE Leaders Upskilling Programs</span>
+    </div>
+    <div class="ribbon" id="ribbon" aria-label="70/20/10 learning model">
+      <span data-k="10"><b>10%</b>Learn</span><span data-k="20"><b>20%</b>Practice</span><span data-k="70"><b>70%</b>Apply at work</span>
+    </div>
+  </div>
+</header>
+<div class="wrap"><nav class="steps" id="steps" aria-label="Progress"></nav></div>
+<main class="wrap" id="app" aria-live="polite"></main>
+<div class="toast" id="toast" role="status"></div>
+<script>
+window.SIM = {
+  letter:'A', code:'HORIZON', program:'Integrated Business Leadership',
+  entity:'QIMMA Autonomous Systems',
+  caseLead:'Export orders have tripled in 18 months. Cash, capacity and talent have not kept up. Group ExCo wants your three-year growth plan on Friday.',
+  caseParas:[
+    'QIMMA Autonomous Systems (QAS) designs and builds autonomous platforms and subsystems inside QIMMA Group, a UAE advanced technology group with 30+ entities across five clusters.',
+    'Demand is strong, but the business is stretched: deliveries slip, working capital is climbing and a third of critical roles have no ready successor. ExCo will fund a credible plan and reject a wish list.'
+  ],
+  facts:[['Order backlog','AED 6.2bn'],['New orders from abroad','70%'],['EBITDA margin','11%'],['Free cash flow','AED -120m'],['Critical roles with a ready successor','66%'],['Portfolio made in the UAE','78%']],
+  role:'You are the new General Manager of QAS, six weeks into the job. Each day you make one linked decision, first on your own, then with your leadership team.',
+  myRole:'General Manager · chairs the team',
+  team:[
+    {id:'mariam', name:'Mariam', role:'Finance Director', style:'Protects cash'},
+    {id:'khalid', name:'Khalid', role:'Operations Director', style:'Delivery first'},
+    {id:'sara', name:'Sara', role:'People & Culture Lead', style:'People first'},
+    {id:'omar', name:'Omar', role:'Business Development Director', style:'Growth hungry'}
+  ],
+  kpis:[
+    {id:'rev', label:'Revenue growth (3-year CAGR)', short:'Revenue growth', unit:'%', d:1, start:8, target:15, dir:1},
+    {id:'ebitda', label:'EBITDA margin', short:'EBITDA margin', unit:'%', d:1, start:11, target:14, dir:1},
+    {id:'fcf', label:'Free cash flow (year 2)', short:'Free cash flow', unit:'aed', d:0, start:-120, target:40, dir:1},
+    {id:'bench', label:'Succession coverage', short:'Succession', unit:'%', d:0, start:66, target:85, dir:1},
+    {id:'adopt', label:'Change adoption index', short:'Change adoption', unit:'idx', d:0, start:45, target:70, dir:1},
+    {id:'conf', label:'ExCo confidence', short:'ExCo confidence', unit:'idx', d:0, start:50, target:75, dir:1}
+  ],
+  comps:[
+    {id:'strat', label:'Strategic direction'}, {id:'fin', label:'Financial judgment'}, {id:'talent', label:'Talent leadership'},
+    {id:'change', label:'Change leadership'}, {id:'infl', label:'Executive influence'}
+  ],
+  gate:'Group ExCo',
+  verdicts:{
+    high:'ExCo funds the plan in two tranches and asks you to present progress in 90 days.',
+    mid:'ExCo funds the first tranche and wants a sharper cash plan before it releases the second.',
+    low:'ExCo sees a wish list, not a plan. You have 30 days to come back with a credible case.'
+  },
+  plays:[
+    {comp:'strat', title:'Three Horizons portfolio review', how:'List your team’s initiatives, tag each H1, H2 or H3, and pause one that competes for the same constrained capacity.'},
+    {comp:'fin', title:'Phased funding case', how:'Rebuild one pending request as tranches tied to milestones, with a clear kill criterion.'},
+    {comp:'talent', title:'Critical-role readiness check', how:'Name your critical roles, rate successor readiness and hold two stay conversations this month.'},
+    {comp:'change', title:'Pilot with your critics', how:'Invite the loudest skeptics of a current change into a two-week redesign of one piece of it.'},
+    {comp:'infl', title:'Answer-first briefing', how:'Rewrite your next senior update so the ask and the answer land in the first 30 seconds.'}
+  ],
+  note:'QIMMA Group is a fictional composite built from public themes in UAE advanced technology groups. In the live program the case is co-designed with EDGE using its own context, and teams of five or six play together while the trainer runs the debrief from their reports.',
+  rounds:[
+    {
+      day:'Business planning', title:'Set the direction', type:'pick', k:3,
+      theory:{name:'Three Horizons of growth', line:'Balance the core (H1), the next engine (H2) and future options (H3), and test every bet against capacity and cash.'},
+      brief:'Six growth initiatives are on the table. The plant is nearly full and cash is negative, so you can back only three this year.',
+      data:[['Plant utilization','94%'],['On-time delivery','78%'],['Services share of revenue','6%'],['Imported subsystems','31% of cost of goods']],
+      prompt:'Choose the three initiatives you will put in the plan.',
+      options:[
+        {id:'a', label:'Expand capacity for the export bestseller', detail:'Add a second assembly line for the platform with the deepest order book.', q:80, tag:'bold', kpi:{rev:2.5, fcf:25, conf:3}, comp:{strat:7, fin:2}, outcome:'The second line protects the order book and gives customers a delivery date they can trust.'},
+        {id:'b', label:'Localize two imported subsystems', detail:'Develop a UAE supplier for two high-cost imported subsystems.', q:85, tag:'data', kpi:{ebitda:1.2, fcf:30, conf:4}, comp:{strat:7, fin:5}, outcome:'Localizing two subsystems cuts unit cost and lifts in-country value, which Group rewards.'},
+        {id:'c', label:'Launch a services business for the installed base', detail:'Sell maintenance and upgrade contracts on 400+ fielded platforms.', q:90, tag:'data', kpi:{rev:2, ebitda:1, fcf:45, conf:4}, comp:{strat:9, fin:4}, outcome:'Services add recurring, high-margin revenue and smooth out lumpy project income.'},
+        {id:'d', label:'Enter three new export markets at once', detail:'Open offices and bid in three new countries this year.', q:45, tag:'bold', kpi:{rev:1.5, fcf:-40, conf:-3}, comp:{strat:2}, outcome:'Three new markets stretch a plant already running at 94%. Sales grow faster than delivery can.'},
+        {id:'e', label:'Acquire a European autonomy software startup', detail:'Buy a 40-person AI autonomy team for AED 180m.', q:58, tag:'bold', kpi:{rev:0.5, fcf:-60, conf:1}, comp:{strat:5, fin:-1}, outcome:'The acquisition is a credible future option, but it lands on a balance sheet already burning cash.'},
+        {id:'f', label:'Pause new bids for six months', detail:'Stop bidding until the backlog is under control.', q:40, tag:'prudent', kpi:{rev:-2.5, fcf:10, conf:-4}, comp:{strat:1, fin:3}, outcome:'Pausing bids eases the plant but signals retreat to customers and to Group.'}
+      ],
+      synergy:[
+        {ids:['a','b'], q:6, kpi:{ebitda:0.5}, text:'Capacity plus localization works as one move: more output at a lower unit cost.'},
+        {ids:['a','d'], q:-10, kpi:{conf:-3}, text:'New markets and a capacity squeeze collide. ExCo will ask who delivers.'},
+        {ids:['b','c'], q:4, kpi:{conf:2}, text:'Local suppliers also make the services promise easier to keep.'}
+      ],
+      team:{
+        mariam:{a:['b','c','f'], says:'We burn AED 120m a year. I back what pays for itself.'},
+        khalid:{a:['a','b','f'], says:'Fix delivery first: a second line and local parts.'},
+        sara:{a:['c','b','f'], says:'Services builds skills we can grow from within.'},
+        omar:{a:['a','d','e'], says:'The export window is open now. Let us go big.'}
+      },
+      insight:'Strong leaders back the core, add a recurring engine and fix cost at the same time. They avoid bets that compete for the same constrained capacity.',
+      debrief:'Which of your three choices is the riskiest, and what early signal would tell you it is failing?'
+    },
+    {
+      day:'Financial decisions', title:'Make the numbers work', type:'allocate', total:300, step:10, unitLabel:'AED m', pre:'AED ', post:'m',
+      theory:{name:'NPV, payback and cash conversion', line:'Fund what clears the hurdle rate fastest, and never let a good investment break the cash cycle.'},
+      event:{title:'Payment terms shift', text:'Your largest export customer cuts advance payments on new orders from 30% to 10%. Working capital rises by AED 40m.', kpi:{fcf:-40}},
+      brief:'ExCo has set a capital envelope of AED 300m for next year. Every dirham you place shapes margin, cash and delivery.',
+      data:[['Hurdle rate','10%'],['Cash conversion cycle','148 days'],['Services hub payback','1.8 years'],['Supplier program payback','2.1 years'],['Automation payback','2.6 years']],
+      prompt:'Allocate the AED 300m envelope across five investments.',
+      items:[
+        {id:'auto', label:'Production line automation', short:'Automation', detail:'Robotic assembly and automated test on the busiest line.', ideal:90, tag:'bold', kpi:{ebitda:2, rev:3, fcf:60, conf:6}},
+        {id:'supp', label:'Local supplier development', short:'Suppliers', detail:'Co-invest in tooling and quality at two UAE suppliers.', ideal:60, tag:'data', kpi:{ebitda:2, fcf:80, conf:6}},
+        {id:'svc', label:'Services hub and digital twin', short:'Services hub', detail:'Remote monitoring of fielded platforms to sell service contracts.', ideal:80, tag:'data', kpi:{rev:4, ebitda:1.5, fcf:150, conf:4}},
+        {id:'wc', label:'Inventory buffer', short:'Inventory', detail:'Safety stock of long-lead components.', ideal:30, tag:'prudent', kpi:{fcf:-40, conf:4}},
+        {id:'acad', label:'Engineering academy and succession', short:'Academy', detail:'Accelerate 40 national engineers into critical roles.', ideal:40, tag:'people', kpi:{bench:45, adopt:20, conf:4}}
+      ],
+      comp:{fin:18, strat:4},
+      outcomes:{
+        high:'Your portfolio clears the hurdle rate and keeps cash moving: services fund automation, and the academy protects the pipeline.',
+        mid:'The plan works on paper, but the mix leaves either cash or capability exposed. ExCo will probe the weakest line.',
+        low:'The mix chases one outcome and starves the others. Cash or delivery breaks before year two.'
+      },
+      team:{
+        mariam:{a:{auto:40,supp:60,svc:110,wc:60,acad:30}, says:'Services pays back fastest. Keep a cash buffer.'},
+        khalid:{a:{auto:150,supp:60,svc:30,wc:40,acad:20}, says:'Automation is the bottleneck. Put the money there.'},
+        sara:{a:{auto:50,supp:40,svc:60,wc:30,acad:120}, says:'Without people, automation sits idle.'},
+        omar:{a:{auto:100,supp:20,svc:130,wc:10,acad:40}, says:'Services is the growth story buyers want.'}
+      },
+      insight:'A balanced portfolio sequences cash: fast-payback services fund slower automation, and investment in people protects the return on both.',
+      debrief:'Where did your allocation trade cash today for value tomorrow? Would your CFO agree?'
+    },
+    {
+      day:'Talent development', title:'Build the team', type:'rank',
+      theory:{name:'Critical roles and the 9-box', line:'Protect the people you cannot lose, map readiness for every critical role, then build the pipeline before you buy talent.'},
+      event:{title:'Two resignations', text:'Two senior systems engineers resigned this week. Exit interviews point to unclear career paths. Eight more key people are flagged as flight risks.', kpi:{bench:-6, conf:-3}},
+      brief:'Your plan needs 24 critical roles filled with ready people within 18 months. Today you have ready successors for 66% of them.',
+      data:[['Critical roles','24'],['Flight risks flagged','8'],['Nationals in high-potential pool','12'],['Time to hire a systems architect','7 months']],
+      prompt:'Put your 90-day talent moves in the order you will run them.',
+      items:[
+        {id:'retain', label:'Stay conversations with the 8 flight risks', short:'Stay talks', detail:'You and their managers, within two weeks.', tag:'people'},
+        {id:'map', label:'Map readiness for all 24 critical roles', short:'Readiness map', detail:'A 9-box review with each director.', tag:'data'},
+        {id:'accel', label:'Stretch roles for 12 high-potential nationals', short:'Stretch roles', detail:'Rotations, mentors and a clear 18-month path.', tag:'people'},
+        {id:'hire', label:'Hire two external systems architects', short:'External hires', detail:'Search firm, seven-month lead time.', tag:'bold'},
+        {id:'incent', label:'Redesign the incentive scheme', short:'Incentives', detail:'A company-wide change to bonus rules.', tag:'prudent'}
+      ],
+      expert:['retain','map','accel','hire','incent'],
+      kpi:{bench:20, adopt:6, conf:5, ebitda:-0.3},
+      comp:{talent:18, strat:3},
+      outcomes:{
+        high:'You stop the bleeding first, then build a pipeline. Succession coverage climbs and people see a path.',
+        mid:'Your moves are right but the order costs you. Some flight risks walk before the plan reaches them.',
+        low:'Big structural moves come before the urgent ones. Two more key people resign while the plan is designed.'
+      },
+      team:{
+        mariam:{a:['map','incent','hire','retain','accel'], says:'Data first. Then we fix incentives.'},
+        khalid:{a:['hire','retain','map','accel','incent'], says:'We need architects now. Hire.'},
+        sara:{a:['retain','accel','map','hire','incent'], says:'Talk to the people at risk this week.'},
+        omar:{a:['retain','hire','accel','map','incent'], says:'Keep the stars, buy the gaps.'}
+      },
+      insight:'Retention is urgent and cheap, mapping shows where to invest, and developing nationals builds a pipeline that lasts. Hiring and incentives matter but take months.',
+      debrief:'Who are the two people in your own team you could least afford to lose, and when did you last talk about their future?'
+    },
+    {
+      day:'Change leadership', title:'Lead the change', type:'choice',
+      theory:{name:'Kotter and ADKAR', line:'People adopt what they help shape. Win early on a small scale, make the win visible, then scale.'},
+      event:{title:'Pushback on the floor', text:'The new production system goes live in three weeks. 60 technicians signed a letter saying it ignores how the floor really works. Two supervisors back them.', kpi:{adopt:-8}},
+      brief:'Automation and the new production system sit at the heart of your plan. If adoption stalls, the business case fails.',
+      data:[['Technicians affected','180'],['Signatures on the letter','60'],['Go-live','3 weeks'],['Training completed','35%']],
+      prompt:'How do you respond?',
+      options:[
+        {id:'a', label:'Hold the line', detail:'Restate the decision and the timeline. Escalate supervisors who resist.', q:30, tag:'bold', kpi:{adopt:-10, conf:-2, ebitda:-0.3}, comp:{change:2}, outcome:'Go-live happens on time, but workarounds spread. Output dips 9% in the first month.'},
+        {id:'b', label:'Pause for three months', detail:'Delay go-live and run listening sessions.', q:48, tag:'people', kpi:{adopt:4, conf:-6, rev:-0.8}, comp:{change:6}, outcome:'Tension drops, but the plan slips a quarter and ExCo questions your grip.'},
+        {id:'c', label:'Co-design and pilot one line', detail:'Bring six supervisors into a two-week redesign sprint, pilot on one line, scale on proof and publish the wins.', q:92, tag:'collab', kpi:{adopt:22, conf:5, ebitda:0.4}, comp:{change:18, infl:4}, outcome:'The supervisors fix three real flaws. The pilot line beats target in week two and the letter signers ask to be next.'},
+        {id:'d', label:'Pay an adoption bonus', detail:'A one-off bonus for every technician at go-live.', q:50, tag:'people', kpi:{adopt:6, ebitda:-0.8, fcf:-12}, comp:{change:5, fin:-2}, outcome:'People comply for the bonus, but the design flaws remain and resurface after payout.'}
+      ],
+      team:{
+        mariam:{a:'a', says:'We approved this. Changing course now costs money.'},
+        khalid:{a:'a', says:'If we bend now, every change becomes a negotiation.'},
+        sara:{a:'c', says:'They know the floor better than we do. Use that.'},
+        omar:{a:'b', says:'Customers will not wait, but a failed go-live is worse.'}
+      },
+      insight:'Resistance is often data. Inviting critics into a fast, bounded redesign turns opponents into owners without losing the timeline.',
+      debrief:'Think of a change you are leading now. Who are your 60 signatures, and what could they teach you?'
+    },
+    {
+      day:'Executive influence', title:'Win executive approval', type:'multi',
+      theory:{name:'Answer first (the Pyramid Principle)', line:'Lead with the ask, back it with the two strongest proofs and meet the hardest objection head on.'},
+      event:{title:'Agenda squeeze', text:'Your 30-minute ExCo slot is cut to 12 minutes. The Group CFO will chair.', kpi:{conf:-2}},
+      brief:'Twelve minutes to win AED 300m. Build your pitch in three moves.',
+      data:[['The ask','AED 300m over 3 years'],['Time','12 minutes'],['Chair','Group CFO'],['Plan payback','2.4 years']],
+      parts:[
+        {type:'choice', title:'Open with', options:[
+          {id:'a', label:'The ask and why now', detail:'We ask for AED 300m to lift margin to 14% and turn cash positive by year two.', q:92, tag:'data', kpi:{conf:6}, comp:{infl:9}, outcome:'Opening with the ask focuses the room in the first minute.'},
+          {id:'b', label:'Our journey so far', detail:'Three years of achievements and milestones.', q:35, tag:'people', kpi:{conf:-2}, comp:{infl:1}, outcome:'The history eats four minutes before ExCo hears what you want.'},
+          {id:'c', label:'A full market analysis', detail:'Demand trends across 12 export markets.', q:55, tag:'data', kpi:{conf:1}, comp:{infl:3}, outcome:'The market data is solid but buries the decision you need.'}
+        ]},
+        {type:'pick', k:2, title:'Back it with two proofs', options:[
+          {id:'p1', label:'Payback and NPV by initiative', q:90, tag:'data', kpi:{conf:4}, comp:{fin:4, infl:3}},
+          {id:'p2', label:'Customer letter of intent for services', q:86, tag:'data', kpi:{conf:4, rev:0.6}, comp:{infl:4}},
+          {id:'p3', label:'Benchmark against global peers', q:60, tag:'data', kpi:{conf:1}, comp:{infl:2}},
+          {id:'p4', label:'Employee engagement survey', q:40, tag:'people', kpi:{}, comp:{infl:1}},
+          {id:'p5', label:'Risk register with kill criteria', q:88, tag:'prudent', kpi:{conf:4}, comp:{fin:2, infl:3}}
+        ]},
+        {type:'choice', w:1.5, title:'The CFO asks: "Your cash flow is negative. Why fund you before you fix it?"', options:[
+          {id:'x', label:'"Growth will fix the cash."', q:28, tag:'bold', kpi:{conf:-5}, comp:{}, outcome:'The CFO hears hope, not a plan.'},
+          {id:'y', label:'"Fund it in two tranches."', detail:'AED 120m now, tied to cash milestones; the rest on proof at month nine.', q:95, tag:'prudent', kpi:{conf:8, fcf:30, adopt:3}, comp:{infl:9, fin:4}, outcome:'Tranches turn the CFO from skeptic to sponsor.'},
+          {id:'z', label:'"We can halve the plan."', q:48, tag:'prudent', kpi:{conf:-1, rev:-1}, comp:{infl:2}, outcome:'Cutting on the spot signals the plan was padded.'},
+          {id:'w', label:'"I will come back with more analysis."', q:35, tag:'data', kpi:{conf:-3}, comp:{infl:1}, outcome:'The decision slips a quarter.'}
+        ]}
+      ],
+      team:{
+        mariam:{a:['c',['p1','p5'],'z'], says:'Show the numbers. Offer a smaller plan.'},
+        khalid:{a:['b',['p1','p3'],'x'], says:'Show them how far we have come.'},
+        sara:{a:['b',['p4','p2'],'y'], says:'Make it human. Then phase it.'},
+        omar:{a:['a',['p2','p3'],'x'], says:'Lead with the ask. Customers will carry it.'}
+      },
+      insight:'Executives decide fast when you lead with the answer, prove it with the two strongest pieces of evidence and turn their biggest risk into a condition they control.',
+      debrief:'What is the one decision you need from your own leadership next month, and what is your 12-minute version of the ask?'
+    }
+  ]
+};
+</script>
+<script src="../assets/sim.js"></script>
+</body>
+</html>

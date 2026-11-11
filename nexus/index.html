@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Project NEXUS Simulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="../assets/sim.css">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <img class="logo" src="../assets/kg-logo.png" alt="Knowledge Group">
+      <span class="sep"></span>
+      <span class="tl"><b id="tl-title">Project</b>EDGE Leaders Upskilling Programs</span>
+    </div>
+    <div class="ribbon" id="ribbon" aria-label="70/20/10 learning model">
+      <span data-k="10"><b>10%</b>Learn</span><span data-k="20"><b>20%</b>Practice</span><span data-k="70"><b>70%</b>Apply at work</span>
+    </div>
+  </div>
+</header>
+<div class="wrap"><nav class="steps" id="steps" aria-label="Progress"></nav></div>
+<main class="wrap" id="app" aria-live="polite"></main>
+<div class="toast" id="toast" role="status"></div>
+<script>
+window.SIM = {
+  letter:'B', code:'NEXUS', program:'Future-Ready Leadership & Transformation',
+  entity:'QIMMA Industrial Services',
+  caseLead:'Customers want to pay for uptime, not repairs. An AI-native rival is 25% cheaper. You have five days to turn the threat into an innovation the business will adopt.',
+  caseParas:[
+    'QIMMA Industrial Services (QIS) maintains and overhauls 140 fielded platforms for Group and government customers inside QIMMA Group, a UAE advanced technology group with 30+ entities across five clusters.',
+    'The operating model was built for scheduled repairs. Data sits in four systems, technicians spend 40% of their time on paperwork and three of the top five contracts renew in nine months.'
+  ],
+  facts:[['Platforms under contract','140'],['Unplanned downtime','18%'],['Technician time on paperwork','40%'],['Rival price gap','25% cheaper'],['Maintenance data systems','4'],['Top-5 contracts renewing','3 in 9 months']],
+  role:'You lead the Transformation Office at QIS. Each day you make one linked decision, first on your own, then with your cross-functional team.',
+  myRole:'Head of Transformation Office · chairs the team',
+  team:[
+    {id:'noura', name:'Noura', role:'Data & AI Lead', style:'Tech optimist'},
+    {id:'rashid', name:'Rashid', role:'MRO Operations Head', style:'Protects the floor'},
+    {id:'layla', name:'Layla', role:'Customer Programs Director', style:'Voice of the customer'},
+    {id:'faisal', name:'Faisal', role:'Risk & Compliance Lead', style:'Guards the downside'}
+  ],
+  kpis:[
+    {id:'value', label:'Annual value case', short:'Value case', unit:'aed', d:0, start:0, target:60, dir:1},
+    {id:'cust', label:'Customer value score', short:'Customer value', unit:'idx', d:0, start:48, target:75, dir:1},
+    {id:'ai', label:'Responsible AI readiness', short:'Responsible AI', unit:'idx', d:0, start:35, target:70, dir:1},
+    {id:'speed', label:'Time to pilot', short:'Time to pilot', unit:'wks', d:0, start:26, target:10, dir:-1},
+    {id:'adopt', label:'Adoption readiness', short:'Adoption', unit:'idx', d:0, start:40, target:70, dir:1},
+    {id:'support', label:'Stakeholder support', short:'Support', unit:'idx', d:0, start:45, target:75, dir:1}
+  ],
+  comps:[
+    {id:'agility', label:'Strategic agility'}, {id:'aidec', label:'AI-enabled decisions'}, {id:'innov', label:'Innovation methods'},
+    {id:'transf', label:'Transformation leadership'}, {id:'collab', label:'Influence & collaboration'}
+  ],
+  gate:'Steering committee',
+  verdicts:{
+    high:'The steering committee approves the pilot and a funded path to scale across the fleet if week-12 results hold.',
+    mid:'The committee approves a smaller pilot and asks for stronger evidence on adoption and AI risk before it commits to scale.',
+    low:'The committee parks the proposal. It reads as a technology project without customer pull or frontline ownership.'
+  },
+  plays:[
+    {comp:'agility', title:'Signal scan', how:'Spend 30 minutes with your team listing three market signals. Tag each as threat, customer pull or capability, and act on one.'},
+    {comp:'aidec', title:'Test before you trust', how:'Pick one AI or data output your team relies on. Backtest it or ask an expert to red-team it before the next decision.'},
+    {comp:'innov', title:'Three-lens sprint', how:'Run a two-week test of one idea with real users, real data and a simple cost check.'},
+    {comp:'transf', title:'Sponsor and co-design', how:'Name a visible sponsor and two frontline co-designers for a change you are leading now.'},
+    {comp:'collab', title:'Pre-wire your next decision', how:'Meet each decision maker one to one before your next big meeting, starting with the skeptic.'}
+  ],
+  note:'QIMMA Group is a fictional composite built from public themes in UAE advanced technology groups. In the live program the case is co-designed with EDGE using its own context, and teams of five or six play together while the trainer runs the debrief from their reports.',
+  rounds:[
+    {
+      day:'Strategic agility', title:'Read the signals', type:'pick', k:3,
+      theory:{name:'Weak signals and scenario thinking', line:'Separate noise from shifts that change how customers buy. Act on signals that combine a threat, a customer pull and a capability you can build.'},
+      brief:'Your team scanned the market and the business for a week. Six signals made the shortlist. You have capacity to act on three.',
+      data:[['Unplanned downtime','18%'],['Technician time on paperwork','40%'],['Rival price gap','25% cheaper'],['Top-5 contracts renewing','3 in 9 months']],
+      prompt:'Choose the three signals that will shape your innovation agenda.',
+      options:[
+        {id:'a', label:'An AI-native rival offers predictive maintenance 25% cheaper', q:90, tag:'data', kpi:{support:4, value:5}, comp:{agility:7}, outcome:'Treating the rival as a real threat gives the agenda urgency.'},
+        {id:'b', label:'A top customer wants availability-based contracts', detail:'They want to pay for hours available, not repairs done.', q:92, tag:'collab', kpi:{cust:8, value:10}, comp:{agility:8}, outcome:'Customer pull turns the idea from a tech project into a business model.'},
+        {id:'c', label:'Buzz about humanoid robots in hangars', q:30, tag:'bold', kpi:{support:-3}, comp:{agility:1}, outcome:'The robot buzz burns a week of attention with no customer behind it.'},
+        {id:'d', label:'Technicians spend 40% of their time on paperwork', q:82, tag:'people', kpi:{adopt:6, value:6}, comp:{agility:6}, outcome:'Freeing technician time gives the floor a reason to want the change.'},
+        {id:'e', label:'A new Group Responsible AI policy', q:75, tag:'prudent', kpi:{ai:8}, comp:{agility:4, aidec:2}, outcome:'Reading the policy early keeps you inside the guardrails.'},
+        {id:'f', label:'A vendor offers a free generic chatbot', q:35, tag:'bold', kpi:{ai:-3}, comp:{agility:1}, outcome:'The free chatbot is a solution looking for a problem, and it is not on the approved tools list.'}
+      ],
+      synergy:[
+        {ids:['a','b'], q:6, kpi:{support:4}, text:'A rival threat plus customer pull makes a compelling case for change.'},
+        {ids:['b','d'], q:4, kpi:{value:4}, text:'Freed technician hours are exactly what an availability promise needs.'}
+      ],
+      team:{
+        noura:{a:['a','c','f'], says:'The tech is moving fast. Robots and chatbots are coming.'},
+        rashid:{a:['d','b','a'], says:'Start with what slows my people down.'},
+        layla:{a:['b','a','e'], says:'Follow the customer and the contract cycle.'},
+        faisal:{a:['e','b','f'], says:'Policy first. Anything else is risk.'}
+      },
+      insight:'The strongest agenda combines a competitive threat, a customer pull and an internal pain point. Hype signals without a customer attached drain attention.',
+      debrief:'What signal in your own market are you treating as noise that a competitor would treat as an opportunity?'
+    },
+    {
+      day:'AI-enabled choices', title:'Decide with AI', type:'choice',
+      theory:{name:'Human in the loop', line:'Use AI to widen options and test assumptions, validate before you scale, and match oversight to the level of risk.'},
+      event:{title:'Data audit', text:'A data audit finds that 18% of fault codes in one of the four maintenance systems are mislabeled.', kpi:{ai:-4}},
+      brief:'The Group-approved AI assistant analyzed three years of maintenance logs. It recommends predictive maintenance across all 140 platforms and forecasts 31% fewer unplanned failures.',
+      data:[['Forecast cut in failures','31%'],['Systems with complete data','2 of 4'],['Platforms in scope','140'],['AI risk tier (Group policy)','Medium']],
+      prompt:'What do you do with the recommendation?',
+      options:[
+        {id:'a', label:'Scale to the full fleet now', detail:'The forecast is strong. Speed wins the renewal.', q:35, tag:'bold', kpi:{value:15, ai:-14, speed:-8, support:-4}, comp:{aidec:2}, outcome:'Week six: false alarms ground four serviceable platforms. The customer asks who approved this.'},
+        {id:'b', label:'Set it aside and trust engineering judgment', detail:'The engineers have kept this fleet running for years.', q:30, tag:'prudent', kpi:{speed:3, support:-2}, comp:{aidec:1}, outcome:'Nothing breaks, and nothing improves. The rival keeps its price edge.'},
+        {id:'c', label:'Validate, then pilot with human sign-off', detail:'Backtest on 12 months of held-out data, have engineers red-team the top 20 predictions, then pilot on 12 platforms with sign-off.', q:93, tag:'data', kpi:{value:12, ai:24, speed:-6, cust:6, support:6}, comp:{aidec:18}, outcome:'The backtest confirms a 22% cut, not 31%. Engineers fix two blind spots. The pilot starts with credibility.'},
+        {id:'d', label:'Ask a second AI tool to check the first', detail:'Run the same logs through another model.', q:45, tag:'data', kpi:{value:5, ai:2}, comp:{aidec:5}, outcome:'Two models agree with each other on the same mislabeled data. Confidence rises; accuracy does not.'}
+      ],
+      team:{
+        noura:{a:'a', says:'The model is clear. Every week we wait costs us.'},
+        rashid:{a:'b', says:'My engineers have kept this fleet flying for years.'},
+        layla:{a:'a', says:'The customer wants this now.'},
+        faisal:{a:'d', says:'Get a second opinion before we commit.'}
+      },
+      insight:'AI shortens analysis, not accountability. Leaders test the data, invite experts to challenge the output and scale only what survives a pilot.',
+      debrief:'Where in your work is an AI or data output accepted without anyone testing it?'
+    },
+    {
+      day:'Innovation methods', title:'Prototype solutions', type:'allocate', total:60, step:5, unitLabel:'team-days', post:' days',
+      theory:{name:'Design thinking', line:'Test desirability with customers, feasibility with the data and viability with the numbers before you build at scale.'},
+      brief:'You have a six-week sprint and 60 team-days to turn the idea into a tested concept: a predictive availability service for a 12-platform pilot.',
+      data:[['Sprint length','6 weeks'],['Team-days available','60'],['Customers willing to co-design','2'],['Lead technicians volunteering','8']],
+      prompt:'Allocate the 60 team-days across five workstreams.',
+      items:[
+        {id:'disc', label:'Customer discovery', short:'Discovery', detail:'Interviews and a co-design workshop with the two customers.', ideal:15, tag:'collab', kpi:{cust:28, support:8}},
+        {id:'shadow', label:'Technician shadowing', short:'Shadowing', detail:'Map a real shift and the paperwork it creates.', ideal:10, tag:'people', kpi:{adopt:32, value:12}},
+        {id:'proto', label:'Rapid prototype', short:'Prototype', detail:'A clickable availability dashboard and alert workflow.', ideal:15, tag:'bold', kpi:{speed:-24, value:24, cust:6}},
+        {id:'data', label:'Data clean-up', short:'Data', detail:'Fix fault-code labels and connect the four systems.', ideal:15, tag:'data', kpi:{ai:40, value:20}},
+        {id:'launch', label:'Launch campaign', short:'Launch', detail:'Video, brochure and an internal launch event.', ideal:5, tag:'bold', kpi:{support:14, cust:2}}
+      ],
+      comp:{innov:18, collab:3},
+      outcomes:{
+        high:'The concept is tested on all three lenses: customers want it, the data supports it and the floor helped shape it.',
+        mid:'The concept is promising but one lens is thin. Expect a hard question you cannot fully answer yet.',
+        low:'You built something polished that nobody fully tested. The pilot will discover what the sprint should have.'
+      },
+      team:{
+        noura:{a:{disc:5,shadow:5,proto:30,data:15,launch:5}, says:'Build it. People believe what they can click.'},
+        rashid:{a:{disc:5,shadow:25,proto:10,data:15,launch:5}, says:'Spend the time on the floor.'},
+        layla:{a:{disc:25,shadow:5,proto:15,data:5,launch:10}, says:'Customers co-design it, or it fails at renewal.'},
+        faisal:{a:{disc:10,shadow:5,proto:10,data:30,launch:5}, says:'Fix the data or nothing else counts.'}
+      },
+      insight:'A good sprint spends most of its time learning, not polishing. Each workstream retires a different risk: desirability, adoption and feasibility.',
+      debrief:'In your next project, which lens (desirable, feasible or viable) are you testing least?'
+    },
+    {
+      day:'Transformation', title:'Mobilize adoption', type:'rank',
+      theory:{name:'ADKAR and visible sponsorship', line:'Adoption follows a sequence: a sponsor people trust, a reason that makes sense to them, then knowledge, ability and reinforcement.'},
+      event:{title:'Peak season warning', text:'MRO supervisors warn the pilot will add workload in peak season. A rumor says the AI is there to cut jobs.', kpi:{adopt:-6, support:-3}},
+      brief:'The 12-platform pilot starts in four weeks. All 300 technicians will hear about it; 40 will work in it.',
+      data:[['Technicians in the pilot','40'],['Technicians in the business','300'],['Pilot start','4 weeks'],['Job-loss rumor','Spreading']],
+      prompt:'Put your adoption moves in the order you will run them.',
+      items:[
+        {id:'spon', label:'Visible sponsor', short:'Sponsor', detail:'The VP Operations opens the pilot and reviews it weekly with the floor.', tag:'collab'},
+        {id:'co', label:'Co-design the workflow with 8 lead technicians', short:'Co-design', detail:'They decide what the alerts look like and who acts on them.', tag:'people'},
+        {id:'town', label:'Town hall with the real story', short:'Town hall', detail:'Why it matters, what it is not (no job cuts) and early results.', tag:'collab'},
+        {id:'kpi', label:'Reset KPIs around availability', short:'New KPIs', detail:'Reward uptime, not repair volume.', tag:'data'},
+        {id:'train', label:'Train all 300 technicians in one week', short:'Mass training', detail:'Classroom sessions before anyone uses it.', tag:'bold'}
+      ],
+      expert:['spon','co','town','kpi','train'],
+      kpi:{adopt:22, support:10, speed:-3, value:6},
+      comp:{transf:18, collab:3},
+      outcomes:{
+        high:'Sponsorship and co-design land before the announcement. The rumor dies because the people closest to the work tell the story.',
+        mid:'The right moves in a shaky order. Some teams hear about the pilot before they understand it.',
+        low:'Mass training before anyone wants the change. Attendance is high and adoption is low.'
+      },
+      team:{
+        noura:{a:['train','town','spon','kpi','co'], says:'Train everyone. Skills remove fear.'},
+        rashid:{a:['co','spon','kpi','town','train'], says:'My lead techs first, or the floor will not trust it.'},
+        layla:{a:['town','spon','co','train','kpi'], says:'Tell the story loud and early.'},
+        faisal:{a:['spon','kpi','co','town','train'], says:'Sponsor and clear measures. Accountability matters.'}
+      },
+      insight:'Sponsors and co-designers create the desire that training cannot. Train in waves once people want the change, and lock it in through what you measure.',
+      debrief:'Who is the visible sponsor of a change you are leading, and how often do people actually see them?'
+    },
+    {
+      day:'Influence & collaboration', title:'Secure alignment', type:'multi',
+      theory:{name:'Influence without authority', line:'Pre-wire decisions one to one, trade on what each stakeholder values and make it easy to say yes.'},
+      event:{title:'A skeptical committee', text:'The Head of Operations told colleagues the proposal is "another IT project." The steering committee meets in five days.', kpi:{support:-4}},
+      brief:'You need the steering committee to approve the pilot and a path to scale. You have five days and no authority over its members.',
+      data:[['Steering members','6'],['Supporters today','2'],['Undecided','3'],['Opposed','1 (Head of Operations)']],
+      parts:[
+        {type:'choice', title:'Before the meeting, you', options:[
+          {id:'a', label:'Meet the Group CFO alone', q:55, tag:'data', kpi:{support:3}, comp:{collab:3}, outcome:'The CFO is supportive but cannot carry Operations.'},
+          {id:'b', label:'Pre-wire each member one to one, starting with the Head of Operations', q:94, tag:'collab', kpi:{support:10}, comp:{collab:9}, outcome:'Meeting the opponent first surfaces his real concern: workload in peak season.'},
+          {id:'c', label:'Email the proposal to all members', q:30, tag:'data', kpi:{support:-1}, comp:{collab:1}, outcome:'Nobody reads the attachment.'},
+          {id:'d', label:'Let the proposal speak for itself in the meeting', q:25, tag:'bold', kpi:{support:-3}, comp:{}, outcome:'Objections surface live, in front of everyone.'}
+        ]},
+        {type:'pick', k:2, title:'Put two proofs in the proposal', options:[
+          {id:'p1', label:'Backtest accuracy and red-team findings', q:90, tag:'data', kpi:{ai:5, support:3}, comp:{aidec:3, collab:2}},
+          {id:'p2', label:'Problem statement co-signed by the customer', q:88, tag:'collab', kpi:{cust:5, support:4}, comp:{collab:4}},
+          {id:'p3', label:'A vision video', q:30, tag:'bold', kpi:{}, comp:{collab:1}},
+          {id:'p4', label:'Workflow designed by the 8 lead technicians', q:86, tag:'people', kpi:{adopt:4, support:4}, comp:{collab:3}},
+          {id:'p5', label:'Rival price comparison', q:65, tag:'data', kpi:{support:2}, comp:{collab:1}}
+        ]},
+        {type:'choice', w:1.5, title:'Head of Operations: "My people are overloaded. This is another IT project."', options:[
+          {id:'x', label:'"Group AI policy requires it."', q:25, tag:'prudent', kpi:{support:-5, adopt:-4}, comp:{}, outcome:'Compliance arguments end the conversation and the goodwill.'},
+          {id:'y', label:'"Your lead techs designed it, and you can stop it."', detail:'It removes paperwork, starts off-peak on 12 platforms, and you hold a stop button at week six.', q:95, tag:'collab', kpi:{support:10, adopt:6, value:4, speed:-1}, comp:{collab:9, transf:3}, outcome:'Giving him control of the risk turns him into a co-owner.'},
+          {id:'z', label:'"We will hire contractors to run it."', q:48, tag:'bold', kpi:{support:1, adopt:-3, value:-4}, comp:{collab:2}, outcome:'Contractors ease the workload, but the floor never owns the change.'},
+          {id:'w', label:'"Let us take it offline."', q:30, tag:'prudent', kpi:{support:-2}, comp:{collab:1}, outcome:'The objection stays unanswered and sets the mood.'}
+        ]}
+      ],
+      team:{
+        noura:{a:['d',['p3','p1'],'x'], says:'The tech will win them over in the room.'},
+        rashid:{a:['b',['p4','p1'],'y'], says:'Talk to Operations first. I know what they fear.'},
+        layla:{a:['a',['p2','p5'],'z'], says:'Win the CFO, show the customer.'},
+        faisal:{a:['c',['p1','p5'],'x'], says:'Document everything. Policy is on our side.'}
+      },
+      insight:'Alignment is built before the meeting. Leaders meet opponents first, bring proof from the people affected and hand control of the risk to the person who fears it.',
+      debrief:'Who is the one stakeholder you have been avoiding on your current initiative, and what does that person actually fear?'
+    }
+  ]
+};
+</script>
+<script src="../assets/sim.js"></script>
+</body>
+</html>

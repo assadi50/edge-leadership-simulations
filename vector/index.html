@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Project VECTOR Simulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="../assets/sim.css">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <img class="logo" src="../assets/kg-logo.png" alt="Knowledge Group">
+      <span class="sep"></span>
+      <span class="tl"><b id="tl-title">Project</b>EDGE Leaders Upskilling Programs</span>
+    </div>
+    <div class="ribbon" id="ribbon" aria-label="70/20/10 learning model">
+      <span data-k="10"><b>10%</b>Learn</span><span data-k="20"><b>20%</b>Practice</span><span data-k="70"><b>70%</b>Apply at work</span>
+    </div>
+  </div>
+</header>
+<div class="wrap"><nav class="steps" id="steps" aria-label="Progress"></nav></div>
+<main class="wrap" id="app" aria-live="polite"></main>
+<div class="toast" id="toast" role="status"></div>
+<script>
+window.SIM = {
+  letter:'C', code:'VECTOR', program:'Business Excellence & Operational Leadership',
+  entity:'QIMMA Precision Electronics',
+  caseLead:'Orders are at a record high, yet three in ten deliveries are late, margin is sliding and good technicians are leaving. You have one quarter to turn it around.',
+  caseParas:[
+    'QIMMA Precision Electronics (QPE) builds circuit boards and electronic subsystems for Group platforms and export customers inside QIMMA Group, a UAE advanced technology group with 30+ entities across five clusters.',
+    'Every function has its own explanation for the gap. Production blames parts, Supply Chain blames engineering changes, and Finance sees margin fall two points a year.'
+  ],
+  facts:[['On-time delivery','71%'],['First pass yield at final test','82%'],['Gross margin','18% (24% two years ago)'],['Cost of poor quality','AED 46m a year'],['Technician attrition','19%'],['Overtime','22% of hours']],
+  role:'You were just named Operations Excellence Lead, with a mandate from the CEO and no line authority over the four functions you need. Each day you make one linked decision, first on your own, then with the team.',
+  myRole:'Operations Excellence Lead · chairs the team',
+  team:[
+    {id:'yousef', name:'Yousef', role:'Production Manager', style:'Hits the numbers'},
+    {id:'hessa', name:'Hessa', role:'Quality Manager', style:'Zero defects'},
+    {id:'dana', name:'Dana', role:'Supply Chain Manager', style:'Protects her suppliers'},
+    {id:'tariq', name:'Tariq', role:'Finance Controller', style:'Cost hawk'}
+  ],
+  kpis:[
+    {id:'otd', label:'On-time delivery', short:'On-time delivery', unit:'%', d:0, start:71, target:92, dir:1},
+    {id:'fpy', label:'First pass yield at final test', short:'First pass yield', unit:'%', d:0, start:82, target:94, dir:1},
+    {id:'margin', label:'Gross margin', short:'Gross margin', unit:'%', d:1, start:18, target:23, dir:1},
+    {id:'copq', label:'Cost of poor quality (annual)', short:'Cost of poor quality', unit:'aed', d:0, start:46, target:25, dir:-1},
+    {id:'engage', label:'Team engagement index', short:'Engagement', unit:'idx', d:0, start:52, target:70, dir:1},
+    {id:'trust', label:'Cross-functional trust index', short:'Cross-functional trust', unit:'idx', d:0, start:45, target:70, dir:1}
+  ],
+  comps:[
+    {id:'diag', label:'Performance diagnosis'}, {id:'comm', label:'Commercial acumen'}, {id:'opex', label:'Operational excellence'},
+    {id:'talent', label:'Talent & performance'}, {id:'exec', label:'Cross-functional execution'}
+  ],
+  gate:'CEO review',
+  verdicts:{
+    high:'The CEO backs your plan, makes the shared scorecard the standard for every entity review and asks you to coach two sister entities next quarter.',
+    mid:'The CEO accepts the plan but wants weekly proof on the weakest KPI before extending your mandate.',
+    low:'The CEO sees four functions still pointing at each other. Your mandate is reviewed in 30 days.'
+  },
+  plays:[
+    {comp:'diag', title:'Driver tree in an hour', how:'Take the one KPI your boss asks about most, break it into its drivers with your team and size each one with real data.'},
+    {comp:'comm', title:'Know your real margin', how:'For your largest customer or internal client, work out the margin after quality losses before the next price talk.'},
+    {comp:'opex', title:'Fix one waste at the source', how:'Pick the biggest rework loop in your area, find its root cause with 5 Whys and standardize the fix.'},
+    {comp:'talent', title:'One SBI conversation', how:'Name one behavior, its impact and the change you need from one team member this week, then agree a 30-day check-in.'},
+    {comp:'exec', title:'Shared scorecard', how:'Agree two measures you jointly own with the team you blame most, plus a weekly 15-minute review.'}
+  ],
+  note:'QIMMA Group is a fictional composite built from public themes in UAE advanced technology groups. In the live program the case is co-designed with EDGE using its own context, and teams of five or six play together while the trainer runs the debrief from their reports.',
+  rounds:[
+    {
+      day:'Performance KPIs', title:'Diagnose performance', type:'pick', k:3,
+      theory:{name:'KPI driver trees and Pareto', line:'Break the headline KPI into its drivers, size each one and attack the few that explain most of the gap.'},
+      brief:'Your team broke last quarter’s 214 late orders into their causes. Everyone has a favorite explanation. You can launch three investigations.',
+      data:[['Late: waiting for components','38%'],['Late: rework loops at final test','27%'],['Late: engineering changes after release','18%'],['Late: capacity','9%'],['Late: planning errors','8%']],
+      prompt:'Pick the three drivers your team will investigate first.',
+      options:[
+        {id:'a', label:'Component shortages', detail:'Supplier lead times on five critical parts.', q:88, tag:'data', kpi:{otd:3, trust:2}, comp:{diag:7}, outcome:'Component shortages are the biggest bar on the chart. Supply Chain gets data, not blame.'},
+        {id:'b', label:'Rework loops at final test', detail:'Boards that fail test and cycle back.', q:92, tag:'data', kpi:{otd:2, fpy:2, copq:-3, margin:0.5}, comp:{diag:8}, outcome:'Rework drives both late orders and cost of poor quality. One fix, two gains.'},
+        {id:'c', label:'Engineering changes after release', detail:'Design changes that reach the line mid-build.', q:80, tag:'data', kpi:{otd:2, fpy:1}, comp:{diag:6}, outcome:'Late engineering changes explain the rework spikes after each release.'},
+        {id:'d', label:'Capacity: add a third shift', detail:'More hours on the line.', q:38, tag:'bold', kpi:{margin:-0.8, engage:-3}, comp:{diag:1}, outcome:'Capacity explains only 9% of late orders. A third shift adds cost to a process that wastes it.'},
+        {id:'e', label:'Planning errors', detail:'Wrong dates and missed orders in the schedule.', q:45, tag:'prudent', kpi:{otd:1}, comp:{diag:2}, outcome:'Planning fixes help at the margin, but this is the smallest driver.'},
+        {id:'f', label:'Technician motivation', detail:'People are not trying hard enough.', q:35, tag:'people', kpi:{engage:1, trust:-2}, comp:{diag:1}, outcome:'Blaming motivation without evidence lands badly on a tired floor.'}
+      ],
+      synergy:[
+        {ids:['b','c'], q:6, kpi:{fpy:1, copq:-2}, text:'Rework and late engineering changes share a root cause: unstable designs reaching the line.'}
+      ],
+      team:{
+        yousef:{a:['d','a','f'], says:'We are short of hands. Add a shift.'},
+        hessa:{a:['b','c','a'], says:'Rework is where quality and delivery meet.'},
+        dana:{a:['a','e','c'], says:'It is not all suppliers. Planning sends us late orders.'},
+        tariq:{a:['d','b','e'], says:'Follow the money: overtime and rework.'}
+      },
+      insight:'The driver tree shows 83% of late orders come from three causes. Capacity and motivation feel urgent but explain little.',
+      debrief:'Which KPI in your area gets explained by opinion instead of a driver tree?'
+    },
+    {
+      day:'Commercial acumen', title:'Protect value', type:'choice',
+      theory:{name:'Contribution margin and cost of poor quality', line:'Know what each contract really earns after quality losses, and trade price only for something of equal value.'},
+      event:{title:'A price ultimatum', text:'Your largest export customer, 32% of revenue, demands a 9% price cut at renewal or it will dual-source.', kpi:{trust:-2}},
+      brief:'Finance ran the numbers on the contract. Quality losses on this product line are larger than most people think.',
+      data:[['Share of revenue','32%'],['Contribution margin on contract','21%'],['Quality losses on this line','7% of its revenue'],['Time for rival to qualify','6 months']],
+      prompt:'How do you respond?',
+      options:[
+        {id:'a', label:'Accept the 9% cut', detail:'Protect the volume at any cost.', q:35, tag:'prudent', kpi:{margin:-2.4, trust:1}, comp:{comm:2}, outcome:'Volume is safe, but contribution drops to 12% and next year’s ask will be bigger.'},
+        {id:'b', label:'Refuse and hold price', detail:'Our margin is already thin.', q:42, tag:'bold', kpi:{margin:0.3, engage:-2, trust:-2}, comp:{comm:5}, outcome:'Price holds for now. The customer starts qualifying the rival and orders soften.'},
+        {id:'c', label:'Trade price for a joint yield plan', detail:'4% now, a further 3% in year two funded by a joint plan that removes quality losses, plus a three-year volume commitment.', q:93, tag:'collab', kpi:{margin:1.8, copq:-6, trust:6, engage:2}, comp:{comm:18, exec:3}, outcome:'The customer gets savings, you get volume and a funded reason to fix quality. Margin rises as losses fall.'},
+        {id:'d', label:'Cut 9% and recover it from inspection', detail:'Fund the discount by trimming quality inspection.', q:15, tag:'bold', kpi:{margin:0.4, fpy:-4, copq:8, trust:-3}, comp:{}, outcome:'Escapes reach the customer within two months. The discount was the cheaper problem.'}
+      ],
+      team:{
+        yousef:{a:'a', says:'Keep the volume. The line needs the work.'},
+        hessa:{a:'c', says:'Our quality losses are the real discount.'},
+        dana:{a:'a', says:'We cannot lose 32% of revenue.'},
+        tariq:{a:'b', says:'Our margin is already thin. Hold the price.'}
+      },
+      insight:'When quality losses exceed the discount being asked for, the best negotiation fixes quality and shares the savings.',
+      debrief:'Which customer or internal client gets a discount you are really paying for with waste?'
+    },
+    {
+      day:'Operational excellence', title:'Improve the process', type:'allocate', total:60, step:5, unitLabel:'person-weeks', post:' person-wks',
+      theory:{name:'Lean and DMAIC', line:'Fix the process at its biggest source of waste, standardize the fix and make performance visible where the work happens.'},
+      event:{title:'Supplier delay', text:'A key supplier of power modules announces a four-week delay.', kpi:{otd:-3}},
+      brief:'Your excellence team of six has ten weeks: 60 person-weeks. Where it goes decides which KPIs move this quarter.',
+      data:[['Excellence team','6 people'],['Horizon','10 weeks'],['Rework hours per week','420'],['Open engineering changes','37']],
+      prompt:'Allocate 60 person-weeks across five workstreams.',
+      items:[
+        {id:'dmaic', label:'DMAIC on final-test rework', short:'Rework DMAIC', detail:'Root cause, fix and control plan on the top three defect types.', ideal:20, tag:'data', kpi:{fpy:16, copq:-26, otd:8, margin:4}},
+        {id:'supp', label:'Supplier development for five critical parts', short:'Suppliers', detail:'Joint forecasting, safety stock and quality audits.', ideal:15, tag:'collab', kpi:{otd:20, margin:3, trust:6}},
+        {id:'eco', label:'Engineering change gate', short:'Change gate', detail:'A freeze window and a change review board.', ideal:10, tag:'prudent', kpi:{fpy:6, otd:8, trust:8}},
+        {id:'vis', label:'Visual management and 5S', short:'Visual mgmt', detail:'Line boards and daily tier huddles.', ideal:10, tag:'people', kpi:{engage:30, fpy:3, trust:4}},
+        {id:'mes', label:'New MES dashboards', short:'Dashboards', detail:'A digital reporting layer on top of the current system.', ideal:5, tag:'bold', kpi:{otd:4, trust:3, copq:-2}}
+      ],
+      comp:{opex:18, diag:3},
+      outcomes:{
+        high:'You attack the biggest waste first and make progress visible on the floor. Yield and delivery climb together.',
+        mid:'Good projects, uneven focus. One KPI moves while another stalls.',
+        low:'Effort spreads thin or goes to dashboards before fixes. The floor sees reports of problems, not fewer problems.'
+      },
+      team:{
+        yousef:{a:{dmaic:10,supp:15,eco:5,vis:5,mes:25}, says:'We need real-time data before we fix anything.'},
+        hessa:{a:{dmaic:30,supp:5,eco:15,vis:5,mes:5}, says:'Rework first. Then stop late changes.'},
+        dana:{a:{dmaic:10,supp:35,eco:5,vis:5,mes:5}, says:'Suppliers are the long pole.'},
+        tariq:{a:{dmaic:25,supp:10,eco:5,vis:5,mes:15}, says:'Rework is cash. Dashboards show the savings.'}
+      },
+      insight:'Lean starts at the largest waste and makes the fix stick on the floor. Dashboards help once the process is stable, not before.',
+      debrief:'Where is your team investing in reporting a problem rather than removing it?'
+    },
+    {
+      day:'Talent & performance', title:'Enable the workforce', type:'choice',
+      theory:{name:'SBI feedback and GROW coaching', line:'Name the behavior and its impact, agree the change, then build routines that make good performance visible every day.'},
+      event:{title:'Another resignation', text:'A senior test technician resigned, the fourth this quarter from the same shift. The exit interview names the supervisor.', kpi:{engage:-4, otd:-1}},
+      brief:'Ahmed, your strongest shift supervisor, hits every output target. His shift also has the highest attrition and the most conflict. Hessa wants him moved.',
+      data:[['Attrition on Ahmed’s shift','31%'],['Attrition on other shifts','14%'],['Ahmed’s output vs target','104%'],['Shifts with daily huddles','1 of 3']],
+      prompt:'What do you do?',
+      options:[
+        {id:'a', label:'Remove Ahmed from the supervisor role', detail:'Protect the team from the behavior.', q:45, tag:'prudent', kpi:{engage:3, otd:-3}, comp:{talent:5}, outcome:'Attrition eases and output dips. Other supervisors learn that results do not protect you, but nothing about how to lead.'},
+        {id:'b', label:'Leave it this quarter', detail:'Output is what the turnaround needs.', q:20, tag:'bold', kpi:{engage:-8, otd:1}, comp:{}, outcome:'Two more technicians leave. Replacing them costs more than his extra output earns.'},
+        {id:'c', label:'Feedback, coaching and daily huddles', detail:'A direct SBI conversation, behavioral goals with a 60-day coaching plan and 10-minute huddles on every shift.', q:93, tag:'people', kpi:{engage:12, otd:3, fpy:2, copq:-1.5, margin:0.5}, comp:{talent:18, exec:2}, outcome:'Ahmed hears the impact for the first time. Within six weeks his shift’s conflicts halve and the huddles spread good practice.'},
+        {id:'d', label:'Send him on a 3-day leadership course', detail:'Give him the tools first.', q:48, tag:'people', kpi:{engage:2}, comp:{talent:5}, outcome:'Ahmed enjoys the course. Nothing changes on the shift because nothing changed there.'}
+      ],
+      team:{
+        yousef:{a:'b', says:'He is my best producer. Do not touch him now.'},
+        hessa:{a:'a', says:'His shift drives our rework too. Move him.'},
+        dana:{a:'d', says:'Give him the tools first.'},
+        tariq:{a:'b', says:'Attrition is an HR problem. Output pays the bills.'}
+      },
+      insight:'High performers with costly behavior need honest feedback and a plan, not removal or protection. Daily routines turn one fix into a system.',
+      debrief:'Who in your team gets results in a way that costs the team, and have you named that impact to them directly?'
+    },
+    {
+      day:'Cross-functional execution', title:'Drive execution', type:'multi',
+      theory:{name:'RACI and joint accountability', line:'Execution fails between functions. Agree owners, shared measures and escalation rules face to face, then inspect weekly.'},
+      event:{title:'The blame cycle', text:'At the CEO review, Production blamed Supply Chain for late parts and Supply Chain blamed Engineering for late changes.', kpi:{trust:-4}},
+      brief:'You need four functions you do not manage to commit to one plan and defend it to the CEO next week.',
+      data:[['Functions involved','4'],['Shared KPIs today','0'],['Weekly cross-functional review','None'],['CEO review','7 days']],
+      parts:[
+        {type:'choice', title:'Lock commitments by', options:[
+          {id:'a', label:'Emailing an action list with deadlines', q:30, tag:'data', kpi:{trust:-2}, comp:{exec:1}, outcome:'Everyone replies "noted." Nobody owns the gaps between the lines.'},
+          {id:'b', label:'Running a cross-functional obeya session', detail:'One room, one wall: agree RACI, owners, a weekly KPI review and escalation rules.', q:94, tag:'collab', kpi:{trust:12, otd:3, engage:3, margin:0.4}, comp:{exec:9}, outcome:'For the first time, all four heads see the same wall and sign the same plan.'},
+          {id:'c', label:'Asking the CEO for a mandate', q:45, tag:'bold', kpi:{trust:-1, otd:1}, comp:{exec:3}, outcome:'The mandate gets compliance. It does not get cooperation.'},
+          {id:'d', label:'Letting each function set its own targets', q:25, tag:'prudent', kpi:{trust:-2}, comp:{exec:1}, outcome:'Four plans, four sets of numbers, the same blame cycle.'}
+        ]},
+        {type:'pick', k:2, title:'Put two measures on the shared scorecard', options:[
+          {id:'p1', label:'On-time delivery by customer', q:90, tag:'data', kpi:{otd:2}, comp:{diag:2, exec:2}},
+          {id:'p2', label:'First pass yield at final test', q:90, tag:'data', kpi:{fpy:2}, comp:{diag:2, exec:2}},
+          {id:'p3', label:'Training hours delivered', q:35, tag:'people', kpi:{}, comp:{}},
+          {id:'p4', label:'Cost of poor quality in AED', q:86, tag:'data', kpi:{copq:-3}, comp:{comm:2, exec:2}},
+          {id:'p5', label:'Number of meetings held', q:15, tag:'prudent', kpi:{trust:-1}, comp:{}}
+        ]},
+        {type:'choice', w:1.5, title:'Dana: "If suppliers miss, Production will blame us again."', options:[
+          {id:'x', label:'"Then make sure they do not miss."', q:20, tag:'bold', kpi:{trust:-5}, comp:{}, outcome:'Dana commits on paper and protects herself in practice.'},
+          {id:'y', label:'"We own delivery jointly, with an early warning."', detail:'A shared KPI, a supplier-risk trigger at day 10 and an agreed escalation path.', q:95, tag:'collab', kpi:{trust:10, otd:3}, comp:{exec:9}, outcome:'Shared ownership turns a blame line into an early-warning system.'},
+          {id:'z', label:'"Let us leave supply metrics off the scorecard."', q:35, tag:'prudent', kpi:{trust:1, otd:-2}, comp:{exec:1}, outcome:'The biggest driver of late orders disappears from view.'},
+          {id:'w', label:'"Production will absorb it."', q:40, tag:'prudent', kpi:{trust:-1, engage:-2}, comp:{exec:2}, outcome:'Yousef hears it as a promise made on his behalf.'}
+        ]}
+      ],
+      team:{
+        yousef:{a:['c',['p1','p5'],'x'], says:'Get the CEO to tell them.'},
+        hessa:{a:['b',['p2','p4'],'y'], says:'One room, shared numbers.'},
+        dana:{a:['d',['p1','p3'],'z'], says:'Each function knows its own job.'},
+        tariq:{a:['a',['p4','p1'],'x'], says:'Write it down. Hold them to it.'}
+      },
+      insight:'Cross-functional execution needs shared measures, named owners and an agreed way to escalate. Mandates and emails produce compliance, not commitment.',
+      debrief:'Which handoff between your team and another causes the most blame, and what shared measure would fix it?'
+    }
+  ]
+};
+</script>
+<script src="../assets/sim.js"></script>
+</body>
+</html>
